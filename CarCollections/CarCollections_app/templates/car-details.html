@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style >
+        
+    .car-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(173, 173, 173, 0));
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+        margin-top: 20px;
+        padding: 50px;
+        margin-left: 50px;
+        background-position: right 35% bottom 45%;
+        box-sizing: border-box;
+        border-radius: 15px;
+        float: left;
+        height: auto;
+    }
+    .car-card>h3 {
+        font-family: "Agency FB", serif;
+        font-size: 42px;
+        font-weight: 700;
+        line-height: normal;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: all 0.5s ease-out;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .car-card>h3,
+    .car-card>h1{
+        color: #E2E8EA;
+        text-align: center;
+    }
+    .car-card>button{
+    
+        text-align: center;
+    }
+    .car-card>h1{
+        font-size: 15px;
+    }
+    .image-wrap {
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+    }
+    .image-wrap>img {
+        max-width: 100%;
+        height: 100%;
+        
+    }
+    .btn {
+        min-width: 25px;
+        border: 2px;
+    }
+          </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body class="p-3 mb-2 bg-dark text-white">
+    <div class=" d-flex justify-content-between bg-secondary text-white border border-0">
+        <div class="row"><a href="/car/add"><p>Create <span>Profile</span></p></a></div>
+        <div class=" d-flex justify-content-between bg-secondary text-white border border-0 row gx-5">
+            <div class="col"><a href="/car/add"><p>Create <span>Car</span></p></a></div>
+            <div class="col"><a href="/car/add"><p>Create <span>Car</span></p></a></div>
+            <div class="col"><a href="/car/add"><p>Create <span>Car</span></p></a></div>
+        </div>
+    </div>
+    
+    <div style="margin-left: 500px; padding: 10px;"><h1>CAR DETAILS</h1></div>
+    <div class="hello d-flex p-2 bd-highlight position-absolute top-50 start-50 translate-middle p-5 mb-2 " style="background: linear-gradient(135deg, rgba(245, 245, 245, 0.1), rgba(25, 21, 44, 0.377)); width: 800px;border-top-left-radius: 15px; border-bottom-left-radius: 15px;">
+        <div style="margin-left: 20px; ">
+            <div class="image-wrap">
+                <img  src="{{ k.imageurl }}" alt="{{ k.type }}">
+            </div>
+        </div>
+        <div style="margin-left: 30px; margin-top: 10px;">
+            <h2>{{k.type}}</h2>
+            <h4>Model: {{k.model}}</h4>
+            <h4>Year: {{k.year}}</h4>
+            <h4>Price: {{k.price|floatformat:3}}</h4>
+        </div>
+        <div class="d-flex" style="margin-left: 40px; margin-top: 190px; display: inline-block;">
+            <form method="post" action="edit">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary " style="margin-left: 65px;">Edit</button>
+            </form>
+            <form method="post" action="/car/{{k.id}}/delete">
+                {% csrf_token %}
+            <button type="submit" class="btn btn-danger " style="margin-left: 15px;">Delete</button>
+            <form method="post" action="edit">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <style >
+        
+    .car-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(173, 173, 173, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    margin-top: 20px;
+    padding: 50px;
+    margin-left: 50px;
+    background-position: right 35% bottom 45%;
+    box-sizing: border-box;
+    border-radius: 15px;
+    float: left;
+    height: auto;
+}
+.car-card>h3 {
+    font-family: "Agency FB", serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: normal;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.5s ease-out;
+    text-align: center;
+    text-transform: uppercase;
+}
+.car-card>h3,
+.car-card>h1{
+    color: #E2E8EA;
+    text-align: center;
+}
+.car-card>button{
+
+    text-align: center;
+}
+.car-card>h1{
+    font-size: 15px;
+}
+.image-wrap {
+    width: 250px;
+    height: 250px;
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+.image-wrap>img {
+    max-width: 100%;
+    height: 100%;
+    
+}
+      </style>
+</head>
+<body class="p-3 mb-2 bg-dark text-white">
+    <div style="background-color:  rgba(80, 67, 107, 0.171);" class="d-flex justify-content-between   text-white border border-0 ">
+        <h4>CARCOLLECTIONS |</h4>
+        <div class="d-flex  row gx-1">
+            <div class="col">
+                <a  style="margin-right: 30px; display: inline !important;color: #E2E8EA; text-decoration: none;" href="/catalogue">CATALOGUE</a> 
+            </div>
+            <div class="col">
+                <a  style="margin-right: 30px; display: inline !important;color: #E2E8EA; text-decoration: none;" href="/car/add">CREATE&nbsp;CAR</a> 
+            </div>
+            <div class="col">
+                <a style=" color: #E2E8EA; text-decoration: none;" href="/profile/details">PROFILE</a> 
+            </div>
+            
+        </div>
+    </div>
+    <div>
+       
+        {% if not b %}
+       
+        <h1 style="margin-top: 25px; margin-left: 10px;" class=" p-3 position-absolute top-25 start-50 translate-middle font-family">No cars yet</h1>
+        {% else %} 
+        <h4 style="margin-left: 550px; margin-top: 20px;">Total &nbsp; Cars  : &nbsp;&nbsp;{{a}} </h4>  
+        {% for c in b %}
+        <form method="post" action="car/{{c.id}}/details">
+            {% csrf_token %}
+            <div class="car-card">
+                <div class="image-wrap">
+                    <img  src="{{ c.imageurl }}" alt="{{ c.type }}">
+                </div>
+                <h3>{{ c.type }}</h3>
+                <h1>{{ c.model }}</h1>
+                <button style="margin-left: 70px; border-radius: 55px; width: 110px;" class="btn btn-primary">DETAILS</button>
+            </div>
+        </form>
+        
+           
+        {% endfor %} 
+        {% endif %}
+    </div>
+    
+</body>
+</html>
